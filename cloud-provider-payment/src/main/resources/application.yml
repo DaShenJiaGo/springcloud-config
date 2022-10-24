@@ -1,0 +1,29 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: cloud-payment-service
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    url: jdbc:mysql://localhost:3306/springcloudguigu?serverTimezone=GMT
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+
+eureka:
+  client:
+    #表示是否将自己注册进Eurekaserver默认为true。
+    register-with-eureka: true
+    #是否从EurekaServer抓取已有的注册信息，默认为true。单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka, http://eureka7002.com:7002/eureka
+    instance:
+      instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port} #eureka控制台上面的主机地址+应用名字+端口号
+      hostname: localhost #主机名字
+      prefer-ip-address: true #以具体的ip的形式显示具体的服务信息
+      lease-renewal-interval-in-seconds: 5 #服务实例要续约的时间间隔，每5秒杀要向服务端提供心跳，保证自己还活着
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.springcloud.entity    # 所有Entity别名类所在包
