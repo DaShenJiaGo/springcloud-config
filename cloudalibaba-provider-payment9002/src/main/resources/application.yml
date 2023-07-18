@@ -3,12 +3,12 @@ server:
 
 spring:
   application:
-    name: nacos-payment-provider
+    name: nacos-payment-1111
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.74.123:8848 #配置Nacos地址
-
+        #server-addr: 192.168.74.123:8848  #配置Nacos地址
+        server-addr: 192.168.74.123:1111
 management:
   endpoints:
     web:
